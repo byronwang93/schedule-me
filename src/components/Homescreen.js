@@ -15,6 +15,16 @@ const Homescreen = () => {
         }}
         as="label"
         htmlFor="fileInput"
+        style={{
+          display: "inline-flex",
+          padding: "12px 20px",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "10px",
+          borderRadius: "15px",
+          background:
+            "linear-gradient(90deg, #0DEFE1 0%, #78FF96 100%)",
+        }}
       >
         Upload file
       </Button>
