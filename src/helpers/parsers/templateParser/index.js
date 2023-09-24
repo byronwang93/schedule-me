@@ -1,6 +1,6 @@
 import ShiftParser from "./shiftParser";
 import PeopleRequiredParser from "./peopleRequiredParser";
-import UnavalabilityParser from "./unavalabilityParser";
+import UnavalabilityParser from "./unavailabilityParser";
 
 const XLSX = require("xlsx");
 
@@ -42,6 +42,8 @@ export default class ScheduleTemplateParser {
 
   compile = () => {
     this.#parseColumn(this.SHIFT_COLUMN);
+    this.print()
+    this.#parseColumn(this.PEOPLE_NEEDED_COLUMN);
   };
 
   print = () => {
@@ -89,9 +91,9 @@ export default class ScheduleTemplateParser {
       case this.SHIFT_COLUMN:
         return new ShiftParser({});
       case this.PEOPLE_NEEDED_COLUMN:
-        return new PeopleRequiredParser(this.output);
+        return new PeopleRequiredParser(this.#output);
       case this.UNAVAILABLILITY_COLUMN:
-        return new UnavalabilityParser(this.output);
+        return new UnavalabilityParser(this.#output);
       default:
         throw new Error("Invalid column");
     }
