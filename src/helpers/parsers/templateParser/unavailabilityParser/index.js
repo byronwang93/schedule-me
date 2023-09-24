@@ -6,7 +6,6 @@ export default class UnavalabilityParser {
   parse = (val, row) => {
     if (row <= 1) return;
     for (const day in this.json) {
-      debugger;
       const updatedArr = this.json[day].map((shift) => {
         if (shift["row"] === row) {
           return {
