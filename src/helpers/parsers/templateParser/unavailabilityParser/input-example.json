@@ -1,0 +1,24 @@
+{
+  "Nov 18": [
+    {
+      "row": "3",
+      "start": "8:00",
+      "end": "10:00",
+      "peopleRequired": "3"
+    },
+    {
+      "row": "4",
+      "start": "10:00",
+      "end": "12:00",
+      "peopleRequired": "3"
+    }
+  ],
+  "Nov 19": [
+    {
+      "row": "6",
+      "start": "8:00",
+      "end": "10:00",
+      "peopleRequired": "10"
+    }
+  ]
+}

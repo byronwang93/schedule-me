@@ -1,10 +1,15 @@
 import { Box, Button, Input } from "@chakra-ui/react";
 import React from "react";
-import { readFile } from "../helpers/helper";
+import ScheduleTemplateParser from "../helpers/parsers/templateParser";
 
 const Homescreen = () => {
-  const handleFileUpload = (event) => {
-    readFile(event);
+  const [schedule, setSchedule] = React.useState({});
+
+  const handleFileUpload = async (event) => {
+    const parser = new ScheduleTemplateParser(event.target.files[0])
+    await parser.readFile();
+    parser.compile();
+    setSchedule(parser.json());
   };
 
   return (
@@ -34,6 +39,9 @@ const Homescreen = () => {
         display="none"
         onChange={handleFileUpload}
       />
+      {
+        JSON.stringify(schedule)
+      }
     </Box>
   );
 };

@@ -1,0 +1,27 @@
+{
+  "Nov 18": [
+    {
+      "row": "3",
+      "start": "8:00",
+      "end": "10:00",
+      "peopleRequired": "3",
+      "unavailabilityList": ["Nick", "Jenn", "Alan"]
+    },
+    {
+      "row": "4",
+      "start": "10:00",
+      "end": "12:00",
+      "peopleRequired": "3",
+      "unavailabilityList": ["Kashiwa", "Kitty", "Byron"]
+    }
+  ],
+  "Nov 19": [
+    {
+      "row": "6",
+      "start": "8:00",
+      "end": "10:00",
+      "peopleRequired": "10",
+      "unavailabilityList": []
+    }
+  ]
+}
