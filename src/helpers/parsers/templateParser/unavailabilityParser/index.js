@@ -11,13 +11,12 @@ export default class UnavalabilityParser {
         if (shift["row"] === row) {
           return {
             ...shift,
-            unavailabilityList: val.split(","),
+            unavailabilityList: val.split(",").map((name) => name.trim()),
           };
         }
         return shift;
       });
       this.json[day] = updatedArr;
-      debugger;
     }
   };
 
