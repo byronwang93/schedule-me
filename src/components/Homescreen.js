@@ -7,7 +7,7 @@ const Homescreen = () => {
     const parser = new ScheduleTemplateParser(event.target.files[0])
     await parser.readFile();
     parser.compile();
-    parser.print();
+    console.log(parser.json())
   };
 
   return (

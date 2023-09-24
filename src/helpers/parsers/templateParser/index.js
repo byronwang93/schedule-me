@@ -46,9 +46,11 @@ export default class ScheduleTemplateParser {
     this.#parseColumn(this.UNAVAILABLILITY_COLUMN);
   };
 
-  print = () => {
+  debug = () => {
     console.log(this.#output);
   };
+
+  json = () => this.#output;
 
   // bad complexity, bad way to set return value
   #parseColumn = (column) => {
