@@ -12,6 +12,11 @@ export default class UnavalabilityParser {
             ...shift,
             unavailabilityList: val.split(",").map((name) => name.trim()),
           };
+        } else if (shift["unavailabilityList"] === undefined) {
+          return {
+            ...shift,
+            unavailabilityList: [],
+          };
         }
         return shift;
       });

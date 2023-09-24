@@ -3,11 +3,13 @@ import React from "react";
 import ScheduleTemplateParser from "../helpers/parsers/templateParser";
 
 const Homescreen = () => {
+  const [schedule, setSchedule] = React.useState({});
+
   const handleFileUpload = async (event) => {
     const parser = new ScheduleTemplateParser(event.target.files[0])
     await parser.readFile();
     parser.compile();
-    console.log(parser.json())
+    setSchedule(parser.json());
   };
 
   return (
@@ -37,6 +39,9 @@ const Homescreen = () => {
         display="none"
         onChange={handleFileUpload}
       />
+      {
+        JSON.stringify(schedule)
+      }
     </Box>
   );
 };
