@@ -6,30 +6,25 @@ export default class PeopleRequiredParser {
   // could do a map, but I'm gonna brute force this shit lol
   parse = (val, row) => {
     if (this.#isNumber(val)) {
-      debugger
+      debugger;
       for (const day in this.json) {
-        debugger
+        debugger;
         const updatedArr = this.json[day].map((shift) => {
-          if (shift['row'] === row) {
+          if (shift["row"] === row) {
             return {
               ...shift,
-              peopleRequired: val
-            }
-          } else {
-            return shift
+              peopleRequired: val,
+            };
           }
-        })
-        this.json[day] = updatedArr
-        debugger
+          return shift;
+        });
+        this.json[day] = updatedArr;
+        debugger;
       }
     }
-  }
+  };
 
   #isNumber = (val) => {
     return !isNaN(val);
-  }
-
-  print = () => {
-    console.log(this.json);
-  }
+  };
 }

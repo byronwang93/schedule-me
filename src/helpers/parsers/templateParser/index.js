@@ -42,8 +42,8 @@ export default class ScheduleTemplateParser {
 
   compile = () => {
     this.#parseColumn(this.SHIFT_COLUMN);
-    this.print()
     this.#parseColumn(this.PEOPLE_NEEDED_COLUMN);
+    this.#parseColumn(this.UNAVAILABLILITY_COLUMN);
   };
 
   print = () => {
