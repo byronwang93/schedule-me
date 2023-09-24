@@ -1,10 +1,13 @@
 import { Box, Button, Input } from "@chakra-ui/react";
 import React from "react";
-import { readFile } from "../helpers/helper";
+import ScheduleTemplateParser from "../helpers/parsers/templateParser";
 
 const Homescreen = () => {
-  const handleFileUpload = (event) => {
-    readFile(event);
+  const handleFileUpload = async (event) => {
+    const parser = new ScheduleTemplateParser(event.target.files[0])
+    await parser.readFile();
+    parser.compile();
+    parser.print();
   };
 
   return (
