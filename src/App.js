@@ -1,16 +1,23 @@
 import "./App.css";
-import { Center, VStack } from "@chakra-ui/react";
+import { VStack } from "@chakra-ui/react";
 import Homescreen from "./components/Homescreen";
-import LandingPage from "./components/LandingPage";
 import Header from "./components/Header";
+import { createContext, useState } from "react";
+import AppContext from "./components/AppContext";
+
+export const DataContext = createContext();
 
 function App() {
+  const [data, setData] = useState({});
+
   return (
-    <VStack bgColor="#2C2543" justifyContent="center" height="100vh"> 
-      {/* <Homescreen /> */}
-      <Header />
-      <LandingPage />
-    </VStack>
+    <DataContext.Provider value={{ data, setData }}>
+      <VStack bgColor="#2C2543" justifyContent="center" height="100vh">
+        {/* <Homescreen /> */}
+        <Header />
+        <AppContext />
+      </VStack>
+    </DataContext.Provider>
   );
 }
 
