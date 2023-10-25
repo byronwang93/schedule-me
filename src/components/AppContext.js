@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
+import DayHours from "./DayHours";
 import DaySelection from "./DaySelection";
 import DayShiftList from "./DayShiftList";
 import LandingPage from "./LandingPage";
@@ -29,14 +30,15 @@ const AppContext = () => {
       {page === 0 && <LandingPage onNext={handleNext} />}
       {page === 1 && <OrganizerNames onPrev={handlePrev} onNext={handleNext} />}
       {page === 2 && <DaySelection onPrev={handlePrev} onNext={handleNext} />}
-      {page === 3 && <DayShiftList onPrev={handlePrev} onNext={handleNext} />}
-      {page === 4 && (
+      {page === 3 && <DayHours onPrev={handlePrev} onNext={handleNext} />}
+      {page === 4 && <DayShiftList onPrev={handlePrev} onNext={handleNext} />}
+      {page === 5 && (
         <UnavailableIncrements onPrev={handlePrev} onNext={handleNext} />
       )}
-      {page === 5 && (
+      {page === 6 && (
         <UnavailableTable onPrev={handlePrev} onNext={handleNext} />
       )}
-      {page === 6 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
+      {page === 7 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
     </Box>
   );
 };
