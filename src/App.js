@@ -12,7 +12,12 @@ function App() {
 
   return (
     <DataContext.Provider value={{ data, setData }}>
-      <VStack bgColor="#2C2543" justifyContent="center" height="100vh">
+      <VStack
+        bgColor="#2C2543"
+        justifyContent="center"
+        minH="100vh"
+        height="fit-content"
+      >
         {/* <Homescreen /> */}
         <Header />
         <AppContext />
