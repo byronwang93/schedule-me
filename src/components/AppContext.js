@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
+import CalculateShifts from "./CalculateShifts";
 import DayHours from "./DayHours";
 import DaySelection from "./DaySelection";
 import DayShiftList from "./DayShiftList";
@@ -38,7 +39,10 @@ const AppContext = () => {
       {page === 6 && (
         <UnavailableTable onPrev={handlePrev} onNext={handleNext} />
       )}
-      {page === 7 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
+      {page === 7 && (
+        <CalculateShifts onPrev={handlePrev} onNext={handleNext} />
+      )}
+      {page === 8 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
     </Box>
   );
 };
