@@ -6,7 +6,7 @@ const OrganizerNames = ({ onNext, onPrev }) => {
   const [names, setNames] = useState("");
   const { data, setData } = useContext(DataContext);
 
-  const updateNames = (val) => {
+  const updateNames = () => {
     const namesArray = names.split(",");
     const trimmedArray = namesArray.map((str) => str.trim());
 
