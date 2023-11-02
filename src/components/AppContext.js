@@ -42,7 +42,7 @@ const AppContext = () => {
       {page === 7 && (
         <CalculateShifts onPrev={handlePrev} onNext={handleNext} />
       )}
-      {page === 8 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
+      {page > 7 && <Shifts onPrev={handlePrev} onNext={handleNext} />}
     </Box>
   );
 };

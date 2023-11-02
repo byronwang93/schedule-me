@@ -12,6 +12,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  Textarea,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
@@ -24,6 +25,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
   const [shifts, setShifts] = useState({});
 
   const [shiftName, setShiftName] = useState("");
+  const [requiredNames, setRequiredNames] = useState("");
   const [shiftDate, setShiftDate] = useState(0);
   const [shiftStart, setShiftStart] = useState("");
   const [shiftEnd, setShiftEnd] = useState("");
@@ -80,7 +82,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent bgColor="gray.700">
-          <ModalHeader>Adding shifts lol</ModalHeader>
+          <ModalHeader>Adding shifts</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Flex flexDir="row">
@@ -104,7 +106,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
               })}
             </Flex>
             <VStack py="10px">
-              <Text alignSelf="start">Shift Name</Text>
+              <Text alignSelf="start">Shift Name*</Text>
               <Input
                 placeholder="shift name"
                 value={shiftName}
@@ -112,7 +114,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
               />
             </VStack>
             <VStack py="10px">
-              <Text alignSelf="start">Start Time</Text>
+              <Text alignSelf="start">Start Time*</Text>
               <Input
                 placeholder="start time"
                 type="time"
@@ -121,7 +123,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
               />
             </VStack>
             <VStack py="10px">
-              <Text alignSelf="start">End Time</Text>
+              <Text alignSelf="start">End Time*</Text>
               <Input
                 placeholder="end time"
                 type="time"
@@ -130,7 +132,17 @@ const DayShiftList = ({ onPrev, onNext }) => {
               />
             </VStack>
             <VStack py="10px">
-              <Text alignSelf="start">Number of people required per shift</Text>
+              <Text alignSelf="start">Required Attendee(s)</Text>
+              <Textarea
+                placeholder="separate names by commas"
+                value={requiredNames}
+                onChange={(e) => setRequiredNames(e.target.value)}
+              />
+            </VStack>
+            <VStack py="10px">
+              <Text alignSelf="start">
+                Number of people required per shift*
+              </Text>
               <Input
                 placeholder="number of people required per shift"
                 type="number"
@@ -179,11 +191,15 @@ const DayShiftList = ({ onPrev, onNext }) => {
             <Button
               colorScheme="green"
               onClick={() => {
+                const namesArray = requiredNames.split(",");
+                const trimmedArray = namesArray.map((str) => str.trim());
+
                 const data = {
                   name: shiftName,
                   startTime: shiftStart,
                   endTime: shiftEnd,
                   numRequiredPeople: shiftRequiredNum,
+                  requiredNames: trimmedArray,
                   recurringEvent: recurringEvent,
                   reassignValue: reassignValue,
                 };
@@ -192,6 +208,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
                 onClose();
 
                 setShiftName("");
+                setRequiredNames("");
                 setShiftDate(0);
                 setShiftStart("");
                 setShiftEnd("");
