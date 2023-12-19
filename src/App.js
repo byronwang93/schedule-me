@@ -1,6 +1,5 @@
 import "./App.css";
 import { VStack } from "@chakra-ui/react";
-import Homescreen from "./components/Homescreen";
 import Header from "./components/Header";
 import { createContext, useState } from "react";
 import AppContext from "./components/AppContext";
@@ -13,7 +12,7 @@ function App() {
   return (
     <DataContext.Provider value={{ data, setData }}>
       <VStack
-        bgColor="#2C2543"
+        bgColor="#433860"
         justifyContent="center"
         minH="100vh"
         height="fit-content"
