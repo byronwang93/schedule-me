@@ -25,32 +25,8 @@ const CalculateShifts = ({ onNext, onPrev }) => {
       setData({ ...data, shiftSchedule: shifts });
       onNext();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shifts]);
-  // useEffect(() => {
-  //   if (shifts) {
-  //     // const moreData = {
-  //     //   originalData: data,
-  //     //   shifts: shifts,
-  //     // };
-  //     // const getUniqueData = async () => {
-  //     //   axios
-  //     //     .post("http://localhost:3001/retrieve-personal-info", moreData)
-  //     //     .then((response) => {
-  //     //       const parsedShifts = JSON.parse(response.data.completion.content);
-  //     //       const uniqueObject = parsedShifts.properties.names;
-  //     //       setFinalShifts({
-  //     //         names: uniqueObject,
-  //     //         days: shifts,
-  //     //       });
-  //     //     })
-  //     //     .catch((e) => {
-  //     //       console.log(e, " is an error");
-  //     //     });
-  //     // };
-  //     // getUniqueData();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [shifts]);
 
   return (
     <Box>
@@ -78,19 +54,6 @@ const CalculateShifts = ({ onNext, onPrev }) => {
                   contentObject
                 );
               }
-
-              // const pattern = /"days": \[.*?\]/;
-              // const match = responseData.match(pattern);
-              // console.log(match, " is the match");
-              // if (match) {
-              //   const daysObjectMatch = match[0];
-              //   const parsedShifts = JSON.parse(`{${daysObjectMatch}}`).days;
-              //   // const daysObject = parsedShifts.properties.days;
-              //   console.log(parsedShifts, " is the response we get");
-              //   setShifts(parsedShifts);
-              // } else {
-              //   throw new Error("not a valid response");
-              // }
             })
             .catch((e) => {
               console.log(e, " is an error");

@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
-import { DataContext } from "../App";
+import React, { useState } from "react";
 import CalculateShifts from "./CalculateShifts";
 import DayHours from "./DayHours";
 import DaySelection from "./DaySelection";
@@ -11,11 +10,7 @@ import Shifts from "./Shifts";
 import UnavailableIncrements from "./UnavailableIncrements";
 import UnavailableTable from "./UnavailableTable";
 
-// export const DataContext = createContext();
-
 const AppContext = () => {
-  //   const [data, setData] = useState({});
-  const { data, setData } = useContext(DataContext);
   const [page, setPage] = useState(0);
 
   const handlePrev = () => {
