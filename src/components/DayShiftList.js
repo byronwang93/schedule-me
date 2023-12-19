@@ -18,6 +18,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
+import GradientButton from "./GradientButton";
 
 const DayShiftList = ({ onPrev, onNext }) => {
   const { data, setData } = useContext(DataContext);
@@ -81,27 +82,23 @@ const DayShiftList = ({ onPrev, onNext }) => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent bgColor="gray.700">
+        <ModalContent bgColor="#433860">
           <ModalHeader>Adding shifts</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Flex flexDir="row">
+            <Flex flexDir="row" flexWrap="wrap">
               {dates.map((date, index) => {
                 return (
-                  <Box
+                  <GradientButton
                     m="5px"
                     p="10px"
-                    border={shiftDate === index && "2px solid white"}
-                    bgColor="blue.500"
                     key={index}
-                    _hover={{
-                      cursor: "pointer",
-                      backgroundColor: "blue.600",
-                    }}
                     onClick={() => setShiftDate(index)}
+                    border={shiftDate === index && "2px solid white"}
+                    fontSize="15px"
                   >
-                    <Text>{date}</Text>
-                  </Box>
+                    {date}
+                  </GradientButton>
                 );
               })}
             </Flex>
@@ -173,7 +170,10 @@ const DayShiftList = ({ onPrev, onNext }) => {
 
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              bgColor="#E2D6FF"
+              _hover={{
+                bgColor: "#C4B2F0",
+              }}
               mr={3}
               onClick={() => {
                 onClose();
@@ -189,7 +189,10 @@ const DayShiftList = ({ onPrev, onNext }) => {
               Cancel
             </Button>
             <Button
-              colorScheme="green"
+              _hover={{
+                bgColor: "#5BFFC4",
+              }}
+              bgColor="#A6FFDF"
               onClick={() => {
                 const namesArray = requiredNames.split(",");
                 const trimmedArray = namesArray.map((str) => str.trim());
