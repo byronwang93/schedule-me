@@ -14,7 +14,7 @@ function App() {
     <DataContext.Provider value={{ data, setData }}>
       <FontLoader fonts={["Hanken Grotesk:400,700"]}>
         <VStack
-          bgColor="#433860"
+          bgColor="#2C2543"
           justifyContent="center"
           minH="100vh"
           height="fit-content"
