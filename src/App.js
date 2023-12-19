@@ -3,6 +3,7 @@ import { VStack } from "@chakra-ui/react";
 import Header from "./components/Header";
 import { createContext, useState } from "react";
 import AppContext from "./components/AppContext";
+import FontLoader from "./components/FontLoader";
 
 export const DataContext = createContext();
 
@@ -11,16 +12,17 @@ function App() {
 
   return (
     <DataContext.Provider value={{ data, setData }}>
-      <VStack
-        bgColor="#433860"
-        justifyContent="center"
-        minH="100vh"
-        height="fit-content"
-      >
-        {/* <Homescreen /> */}
-        <Header />
-        <AppContext />
-      </VStack>
+      <FontLoader fonts={["Hanken Grotesk:400,700"]}>
+        <VStack
+          bgColor="#433860"
+          justifyContent="center"
+          minH="100vh"
+          height="fit-content"
+        >
+          <Header />
+          <AppContext />
+        </VStack>
+      </FontLoader>
     </DataContext.Provider>
   );
 }
