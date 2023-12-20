@@ -1,6 +1,7 @@
-import { Box, Button, Input } from "@chakra-ui/react";
+import { Box, Input, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
+import SecondaryButton from "./SecondaryButton";
 
 const DaySelection = ({ onPrev, onNext }) => {
   const { data, setData } = useContext(DataContext);
@@ -23,25 +24,33 @@ const DaySelection = ({ onPrev, onNext }) => {
     console.log(finalDates, " is the data");
   }, [finalDates]);
 
+  useEffect(() => {
+    if (finalDates[0] === "") {
+      console.log("made it");
+      setFinalDates([date]);
+    } else if (finalDates.includes(date)) {
+      // do nothing
+    } else {
+      const newArray = [...finalDates, date];
+      setFinalDates(newArray);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date]);
+
   return (
     <Box>
       <Input
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={(e) => {
+          setDate(e.target.value);
+        }}
         placeholder="Select Date and Time"
         size="md"
         type="date"
       />
-      <Button
-        onClick={() => {
-          const newArray = [...finalDates, date];
-          setFinalDates(newArray);
-        }}
-      >
-        Select Date
-      </Button>
-      <Button onClick={onPrev}>Previous</Button>
-      <Button
+      <Text>final dates are: {finalDates}</Text>
+      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+      <SecondaryButton
         onClick={() => {
           const englishDates = finalDates.map((date) =>
             formatDateToEnglish(date)
@@ -51,7 +60,7 @@ const DaySelection = ({ onPrev, onNext }) => {
         }}
       >
         Continue
-      </Button>
+      </SecondaryButton>
     </Box>
   );
 };
