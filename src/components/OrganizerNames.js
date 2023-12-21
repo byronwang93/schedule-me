@@ -18,7 +18,12 @@ const OrganizerNames = ({ onNext, onPrev }) => {
   };
 
   return (
-    <Box>
+    <Box
+      w={{ base: "360px", md: "680px" }}
+      borderRadius="7px"
+      p="30px"
+      bgColor="whiteAlpha.100"
+    >
       <Textarea
         value={names}
         onChange={(e) => {
