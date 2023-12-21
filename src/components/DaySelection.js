@@ -1,4 +1,12 @@
-import { Box, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  HStack,
+  Input,
+  Spacer,
+  Tag,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
 import SecondaryButton from "./SecondaryButton";
@@ -38,8 +46,16 @@ const DaySelection = ({ onPrev, onNext }) => {
   }, [date]);
 
   return (
-    <Box>
+    <VStack
+      maxW={{ base: "360px", md: "680px" }}
+      bgColor="#433860"
+      p="30px"
+      borderRadius="7px"
+      alignItems="left"
+    >
+      <Text pb="4px">Select the days of your event</Text>
       <Input
+        w={{ base: "300px", md: "600px" }}
         value={date}
         onChange={(e) => {
           setDate(e.target.value);
@@ -48,20 +64,40 @@ const DaySelection = ({ onPrev, onNext }) => {
         size="md"
         type="date"
       />
-      <Text>final dates are: {finalDates}</Text>
-      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
-      <SecondaryButton
-        onClick={() => {
-          const englishDates = finalDates.map((date) =>
-            formatDateToEnglish(date)
+      <Box display="flex" flexWrap="wrap">
+        {finalDates.map((date, id) => {
+          if (date === "") return null;
+          const formattedDate = formatDateToEnglish(date);
+          return (
+            <Tag
+              mr="17px"
+              mt="17px"
+              p="10px"
+              fontWeight="bold"
+              bgGradient="linear(to-r, #0DEFE1, #78FF96)"
+              key={id}
+            >
+              {formattedDate}
+            </Tag>
           );
-          setData({ ...data, daysList: englishDates });
-          onNext();
-        }}
-      >
-        Continue
-      </SecondaryButton>
-    </Box>
+        })}
+      </Box>
+      <HStack pt="40px">
+        <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+        <Spacer />
+        <SecondaryButton
+          onClick={() => {
+            const englishDates = finalDates.map((date) =>
+              formatDateToEnglish(date)
+            );
+            setData({ ...data, daysList: englishDates });
+            onNext();
+          }}
+        >
+          Continue
+        </SecondaryButton>
+      </HStack>
+    </VStack>
   );
 };
 
