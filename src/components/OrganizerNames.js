@@ -1,6 +1,7 @@
-import { Box, Button, Textarea } from "@chakra-ui/react";
+import { Box, Textarea } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
+import SecondaryButton from "./SecondaryButton";
 
 const OrganizerNames = ({ onNext, onPrev }) => {
   const [names, setNames] = useState("");
@@ -26,14 +27,14 @@ const OrganizerNames = ({ onNext, onPrev }) => {
         placeholder="names of all organizers goes here"
       />
 
-      <Button
+      <SecondaryButton
         onClick={() => {
           updateNames(names);
           onNext();
         }}
       >
         Next
-      </Button>
+      </SecondaryButton>
     </Box>
   );
 };

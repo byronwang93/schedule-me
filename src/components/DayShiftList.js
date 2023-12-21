@@ -19,6 +19,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
 import GradientButton from "./GradientButton";
+import SecondaryButton from "./SecondaryButton";
 
 const DayShiftList = ({ onPrev, onNext }) => {
   const { data, setData } = useContext(DataContext);
@@ -63,21 +64,21 @@ const DayShiftList = ({ onPrev, onNext }) => {
 
   return (
     <Box>
-      <Button onClick={onOpen}>Add Shift</Button>
+      <GradientButton onClick={onOpen}>Add Shift</GradientButton>
       <Flex flexDirection="column">
         <Text>Total Shifts</Text>
         <Text>{JSON.stringify(shifts)}</Text>
       </Flex>
       <Box mt="30px">
-        <Button onClick={() => onPrev()}>Previous</Button>
-        <Button
+        <SecondaryButton onClick={() => onPrev()}>Previous</SecondaryButton>
+        <SecondaryButton
           onClick={() => {
             setData({ ...data, shifts: shifts });
             onNext();
           }}
         >
           Next
-        </Button>
+        </SecondaryButton>
       </Box>
 
       <Modal isOpen={isOpen} onClose={onClose}>

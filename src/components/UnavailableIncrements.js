@@ -1,15 +1,11 @@
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
-import React, { useContext, useEffect, useState } from "react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
+import SecondaryButton from "./SecondaryButton";
 
 const UnavailableIncrements = ({ onPrev, onNext }) => {
   const { data, setData } = useContext(DataContext);
   const [interval, setInterval] = useState(1);
-  // console.log(data, " is data data data");
-
-  // useEffect(() => {
-  //   console.log(data, " is the data data data");
-  // }, [data]);
 
   return (
     <Box>
@@ -25,15 +21,15 @@ const UnavailableIncrements = ({ onPrev, onNext }) => {
         />
         <span>hour intervals</span>
       </Flex>
-      <Button onClick={onPrev}>Previous</Button>
-      <Button
+      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+      <SecondaryButton
         onClick={() => {
           setData({ ...data, increments: interval });
           onNext();
         }}
       >
         Continue
-      </Button>
+      </SecondaryButton>
     </Box>
   );
 };

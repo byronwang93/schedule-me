@@ -1,6 +1,7 @@
-import { Box, Button, Input, Text, VStack } from "@chakra-ui/react";
+import { Box, Input, Text, VStack } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
+import SecondaryButton from "./SecondaryButton";
 
 const DayHours = ({ onPrev, onNext }) => {
   const { data, setData } = useContext(DataContext);
@@ -72,15 +73,15 @@ const DayHours = ({ onPrev, onNext }) => {
         );
       })}
       hello world this is the day hours
-      <Button onClick={onPrev}>Previous</Button>
-      <Button
+      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+      <SecondaryButton
         onClick={() => {
           setData({ ...data, startEndTimes: hours });
           onNext();
         }}
       >
         Continue
-      </Button>
+      </SecondaryButton>
     </Box>
   );
 };

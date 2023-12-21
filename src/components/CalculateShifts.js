@@ -1,7 +1,9 @@
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
+import GradientButton from "./GradientButton";
+import SecondaryButton from "./SecondaryButton";
 
 const CalculateShifts = ({ onNext, onPrev }) => {
   const { data, setData } = useContext(DataContext);
@@ -30,8 +32,8 @@ const CalculateShifts = ({ onNext, onPrev }) => {
 
   return (
     <Box>
-      <Button onClick={onPrev}>Previous</Button>
-      <Button
+      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+      <GradientButton
         onClick={async () => {
           console.log("clicked");
           axios
@@ -58,12 +60,10 @@ const CalculateShifts = ({ onNext, onPrev }) => {
             .catch((e) => {
               console.log(e, " is an error");
             });
-
-          // onNext();
         }}
       >
         Calculate Shifts!
-      </Button>
+      </GradientButton>
     </Box>
   );
 };

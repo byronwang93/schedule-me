@@ -1,6 +1,7 @@
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
+import SecondaryButton from "./SecondaryButton";
 
 const UnavailableTable = ({ onNext, onPrev }) => {
   const { data, setData } = useContext(DataContext);
@@ -116,7 +117,6 @@ const UnavailableTable = ({ onNext, onPrev }) => {
                           bgColor="white"
                           color="black"
                           placeholder="enter names here"
-                          // HERE I NEED HELP
                           onChange={(e) => {
                             handleNameInputChange(day, index, e);
                           }}
@@ -132,15 +132,15 @@ const UnavailableTable = ({ onNext, onPrev }) => {
           }
         })}
       <Text>above</Text>
-      <Button onClick={onPrev}>Prev</Button>
-      <Button
+      <SecondaryButton onClick={onPrev}>Prev</SecondaryButton>
+      <SecondaryButton
         onClick={() => {
           setData({ ...data, unavailabilities: unavailabilities });
           onNext();
         }}
       >
         Continue
-      </Button>
+      </SecondaryButton>
     </Box>
   );
 };
