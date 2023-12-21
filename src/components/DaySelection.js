@@ -47,7 +47,7 @@ const DaySelection = ({ onPrev, onNext }) => {
 
   return (
     <VStack
-      maxW={{ base: "360px", md: "680px" }}
+      w={{ base: "360px", md: "680px" }}
       bgColor="#433860"
       p="30px"
       borderRadius="7px"
