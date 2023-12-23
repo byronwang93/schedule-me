@@ -11,6 +11,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spacer,
   Text,
   Textarea,
   useDisclosure,
@@ -63,14 +64,35 @@ const DayShiftList = ({ onPrev, onNext }) => {
   }, [shifts]);
 
   return (
-    <Box>
-      <GradientButton onClick={onOpen}>Add Shift</GradientButton>
+    <Box w={{ base: "360px", md: "680px" }} p="30px" bgColor="blackAlpha.300">
+      <Text className="heading">Add your shifts to each day</Text>
+      <GradientButton px="40px" my="17px" onClick={onOpen}>
+        Add Shift
+      </GradientButton>
       <Flex flexDirection="column">
         <Text>Total Shifts</Text>
         <Text>{JSON.stringify(shifts)}</Text>
+        {Object.entries(shifts).map(([shiftName, shiftList], id) => {
+          return (
+            <Box>
+              <Text>name is this: {shiftName}</Text>
+              <Text>list is this: {shiftList}</Text>
+            </Box>
+          );
+        })}
+        {/* {shifts.forEach((shift, id) => {
+          const [shiftName, shiftList] = shift;
+          return (
+            <Box>
+              <Text>name is this: {shiftName}</Text>
+              <Text>list is this: {shiftList}</Text>
+            </Box>
+          );
+        })} */}
       </Flex>
-      <Box mt="30px">
+      <Box mt="30px" display="flex" flexDir="row">
         <SecondaryButton onClick={() => onPrev()}>Previous</SecondaryButton>
+        <Spacer />
         <SecondaryButton
           onClick={() => {
             setData({ ...data, shifts: shifts });
