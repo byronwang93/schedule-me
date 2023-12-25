@@ -1,4 +1,12 @@
-import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Input,
+  Spacer,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
 import SecondaryButton from "./SecondaryButton";
@@ -14,12 +22,6 @@ const UnavailableTable = ({ onNext, onPrev }) => {
     setIncrement(data?.increments);
     setStartEndTimes(data?.startEndTimes);
   }, [data]);
-
-  useEffect(() => {
-    // console.log(data, " is the data in the END");
-    // console.log(startEndTimes, " is STARTEND");
-    // console.log(increment, " is increment");
-  }, [data, startEndTimes, increment]);
 
   const handleNameInputChange = (day, shiftIndex, e) => {
     const { value } = e.target;
@@ -47,8 +49,6 @@ const UnavailableTable = ({ onNext, onPrev }) => {
       const daysList = data?.daysList;
       for (let i = 0; i < daysList.length; i++) {
         const curr = daysList[i];
-        // console.log(curr, " is the curr");
-        // console.log(unavailabilities, " is the THING");
         if (!unavailabilities[curr]) {
           const start = startEndTimes[curr]?.start;
           const end = startEndTimes[curr]?.end;
@@ -66,7 +66,6 @@ const UnavailableTable = ({ onNext, onPrev }) => {
             currentStart = currentEnd;
           }
 
-          // console.log(start, end, " is the OOGABOOGA");
           setUnavailabilities({
             ...unavailabilities,
             [curr]: unavailIntervals,
@@ -76,72 +75,65 @@ const UnavailableTable = ({ onNext, onPrev }) => {
     }
   }, [data, increment, startEndTimes, unavailabilities]);
 
-  // useEffect(() => {
-  //   if (startEndTimes) {
-  //     for (let i = 0; i < startEndTimes.length; i++) {
-  //       const curr = startEndTimes[i];
-  //       if (!unavailabilities[curr]) {
-  //         unavailabilities[curr] = {
-  //           startTime: null,
-  //           endTime: null,
-  //         };
-  //       }
-  //     }
-  //   }
-  // }, [startEndTimes]);
-
   return (
-    <Box>
-      <Text pt="200px">Last box of unavailabilities</Text>
-      <Text>{JSON.stringify(data)}</Text>
-      <Text>below</Text>
+    <VStack w={{ base: "360px", md: "680px" }}>
+      <Text alignSelf="baseline" pt="80px" className="heading">
+        Input unavailabilities
+      </Text>
       {unavailabilities !== {} &&
         data?.daysList &&
         data?.daysList.map((day) => {
           const currDay = unavailabilities[day];
           if (currDay) {
             return (
-              <Box>
-                <Text fontSize="30px" fontWeight="bold">
+              <Box pt="20px" w={{ base: "360px", md: "680px" }}>
+                <Text pb="7px" fontSize="20px" fontWeight="bold">
                   {day}
                 </Text>
-                {currDay.map((shift, index) => {
-                  return (
-                    <Flex pt="10px" flexDir="column" key={index}>
-                      <Text>List of people unavailable</Text>
-                      <Flex flexDir="row">
-                        <Text px="5px">{shift.start}</Text>
-                        <Text px="5px">{shift.end}</Text>
+                <VStack
+                  alignItems="normal"
+                  borderRadius="7px"
+                  p="30px"
+                  bgColor="#433860"
+                  maxH="500px"
+                  overflowY="auto"
+                >
+                  {currDay.map((shift, index) => {
+                    return (
+                      <Flex pb="10px" px="13px" flexDir="column" key={index}>
+                        <Text pb="3px" fontSize="17px">
+                          {shift.start} - {shift.end}
+                        </Text>
                         <Input
                           type="text"
-                          bgColor="white"
-                          color="black"
                           placeholder="enter names here"
                           onChange={(e) => {
                             handleNameInputChange(day, index, e);
                           }}
                         />
                       </Flex>
-                    </Flex>
-                  );
-                })}
+                    );
+                  })}
+                </VStack>
               </Box>
             );
           } else {
             return null;
           }
         })}
-      <Text>above</Text>
-      <SecondaryButton onClick={onPrev}>Prev</SecondaryButton>
-      <SecondaryButton
-        onClick={() => {
-          setData({ ...data, unavailabilities: unavailabilities });
-          onNext();
-        }}
-      >
-        Continue
-      </SecondaryButton>
-    </Box>
+      <HStack py="30px" w="100%">
+        <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+        <Spacer />
+        <SecondaryButton
+          onClick={() => {
+            setData({ ...data, unavailabilities: unavailabilities });
+            onNext();
+          }}
+        >
+          Continue
+        </SecondaryButton>
+      </HStack>
+    </VStack>
   );
 };
 
