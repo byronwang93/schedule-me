@@ -2,7 +2,9 @@ import {
   Box,
   Button,
   Checkbox,
+  Divider,
   Flex,
+  HStack,
   Input,
   Modal,
   ModalBody,
@@ -64,31 +66,77 @@ const DayShiftList = ({ onPrev, onNext }) => {
   }, [shifts]);
 
   return (
-    <Box w={{ base: "360px", md: "680px" }} p="30px" bgColor="blackAlpha.300">
+    <Box w={{ base: "360px", md: "680px" }} p="30px">
       <Text className="heading">Add your shifts to each day</Text>
       <GradientButton px="40px" my="17px" onClick={onOpen}>
         Add Shift
       </GradientButton>
       <Flex flexDirection="column">
-        <Text>Total Shifts</Text>
-        <Text>{JSON.stringify(shifts)}</Text>
+        {/* <Text>Total Shifts</Text>
+        <Text>{JSON.stringify(shifts)}</Text> */}
         {Object.entries(shifts).map(([shiftName, shiftList], id) => {
           return (
-            <Box>
-              <Text>name is this: {shiftName}</Text>
-              <Text>list is this: {shiftList}</Text>
+            <Box key={id} pb="20px">
+              <Text className="heading">{shiftName}</Text>
+              <Box>
+                <HStack spacing="60px" color="#818181">
+                  <Text pl="10px" pr="35px" className="subheading">
+                    Shift name
+                  </Text>
+                  <Text className="subheading">Start</Text>
+                  <Text className="subheading">End</Text>
+                  <Text className="subheading">Required</Text>
+                  <Text className="subheading">Recurring</Text>
+                </HStack>
+                <VStack
+                  borderRadius="5px"
+                  maxHeight="500px"
+                  minHeight="40px"
+                  bgColor="#433860"
+                >
+                  {shiftList.map((singleShift, id) => {
+                    const {
+                      endTime,
+                      startTime,
+                      name,
+                      numRequiredPeople,
+                      recurringEvent,
+                    } = singleShift;
+                    return (
+                      <Box w="-webkit-fill-available">
+                        <HStack
+                          alignSelf="baseline"
+                          spacing="10px"
+                          py="13px"
+                          fontSize="17px"
+                          key={id}
+                          pl="15px"
+                        >
+                          <Text w="145px" overflowX="auto">
+                            {name}
+                          </Text>
+                          <Text w="90px" pl="12px">
+                            {startTime}
+                          </Text>
+                          <Text pl="4px" w="80px">
+                            {endTime}
+                          </Text>
+                          <Text pl="5px" w="118px">
+                            {numRequiredPeople}
+                          </Text>
+                          <Text>{JSON.stringify(recurringEvent)}</Text>
+                        </HStack>
+                        {id !== shiftList.length - 1 && (
+                          <Divider ml="2.5%" w="95%" />
+                        )}
+                      </Box>
+                    );
+                  })}
+                </VStack>
+              </Box>
             </Box>
           );
         })}
-        {/* {shifts.forEach((shift, id) => {
-          const [shiftName, shiftList] = shift;
-          return (
-            <Box>
-              <Text>name is this: {shiftName}</Text>
-              <Text>list is this: {shiftList}</Text>
-            </Box>
-          );
-        })} */}
       </Flex>
       <Box mt="30px" display="flex" flexDir="row">
         <SecondaryButton onClick={() => onPrev()}>Previous</SecondaryButton>
