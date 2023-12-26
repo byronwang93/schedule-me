@@ -11,7 +11,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
 import SecondaryButton from "./SecondaryButton";
 
-const Shifts = ({ onPrev, onNext }) => {
+const Shifts = ({ onPrev }) => {
   const { data } = useContext(DataContext);
 
   const { shiftSchedule } = data;
