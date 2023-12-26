@@ -53,11 +53,11 @@ const CalculateShifts = ({ onNext, onPrev }) => {
                   console.log(response, " is the response");
                   const responseData = response.data.completion.content;
                   const contentObject = JSON.parse(responseData); // Parse the content string into an object
-                  if (contentObject.properties.days) {
+                  if (contentObject?.properties?.days) {
                     const daysObject = contentObject.properties.days;
                     console.log(daysObject, " is the response we get");
                     setShifts(daysObject);
-                  } else if (contentObject.days) {
+                  } else if (contentObject?.days) {
                     const daysObject = contentObject.days;
                     console.log(daysObject, " is the response we get");
                     setShifts(daysObject);
