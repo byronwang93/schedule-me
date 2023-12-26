@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack, Spacer, Text, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../App";
@@ -31,39 +31,52 @@ const CalculateShifts = ({ onNext, onPrev }) => {
   }, [shifts]);
 
   return (
-    <Box>
-      <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
-      <GradientButton
-        onClick={async () => {
-          console.log("clicked");
-          axios
-            .post("http://localhost:3001/make-shifts", data)
-            .then((response) => {
-              console.log(response, " is the response");
-              const responseData = response.data.completion.content;
-              const contentObject = JSON.parse(responseData); // Parse the content string into an object
-              if (contentObject.properties.days) {
-                const daysObject = contentObject.properties.days;
-                console.log(daysObject, " is the response we get");
-                setShifts(daysObject);
-              } else if (contentObject.days) {
-                const daysObject = contentObject.days;
-                console.log(daysObject, " is the response we get");
-                setShifts(daysObject);
-              } else {
-                throw new Error(
-                  "no valid response w/ this content: ",
-                  contentObject
-                );
-              }
-            })
-            .catch((e) => {
-              console.log(e, " is an error");
-            });
-        }}
-      >
-        Calculate Shifts!
-      </GradientButton>
+    <Box
+      w={{ base: "360px", md: "580px" }}
+      p="40px"
+      borderRadius="7px"
+      bgColor="#433860"
+    >
+      <VStack>
+        <Text pb="30px" alignSelf="baseline" fontSize="20px">
+          Generate my schedule! :')
+        </Text>
+        <HStack w="-webkit-fill-available">
+          <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
+          <Spacer />
+          <GradientButton
+            onClick={async () => {
+              console.log("clicked");
+              axios
+                .post("http://localhost:3001/make-shifts", data)
+                .then((response) => {
+                  console.log(response, " is the response");
+                  const responseData = response.data.completion.content;
+                  const contentObject = JSON.parse(responseData); // Parse the content string into an object
+                  if (contentObject.properties.days) {
+                    const daysObject = contentObject.properties.days;
+                    console.log(daysObject, " is the response we get");
+                    setShifts(daysObject);
+                  } else if (contentObject.days) {
+                    const daysObject = contentObject.days;
+                    console.log(daysObject, " is the response we get");
+                    setShifts(daysObject);
+                  } else {
+                    throw new Error(
+                      "no valid response w/ this content: ",
+                      contentObject
+                    );
+                  }
+                })
+                .catch((e) => {
+                  console.log(e, " is an error");
+                });
+            }}
+          >
+            Calculate Shifts!
+          </GradientButton>
+        </HStack>
+      </VStack>
     </Box>
   );
 };
