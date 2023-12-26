@@ -44,7 +44,7 @@ const Shifts = ({ onPrev }) => {
   return (
     <Box pt="50px">
       <Flex flexDir="column">
-        <Text color="#20FFAF" className="heading">
+        <Text color="#20FFAF" fontSize="28px" className="heading">
           Schedule
         </Text>
         <Select
