@@ -147,7 +147,7 @@ const DayShiftList = ({ onPrev, onNext }) => {
             onNext();
           }}
         >
-          Next
+          Continue
         </SecondaryButton>
       </Box>
 
