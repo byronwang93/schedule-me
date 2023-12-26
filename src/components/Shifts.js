@@ -106,7 +106,7 @@ const Shifts = ({ onPrev }) => {
                       </Text>
                       <Text w="98px">{shiftLeader}</Text>
                       <Text overflowX="auto" w="244px">
-                        {assignedPeople}
+                        {assignedPeople.join(", ")}
                       </Text>
                     </HStack>
                     {index !== dateDetails.length - 1 && (
