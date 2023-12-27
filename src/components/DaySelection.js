@@ -86,6 +86,7 @@ const DaySelection = ({ onPrev, onNext }) => {
         <SecondaryButton onClick={onPrev}>Previous</SecondaryButton>
         <Spacer />
         <SecondaryButton
+          isDisabled={finalDates[0] === ""}
           onClick={() => {
             const englishDates = finalDates.map((date) =>
               formatDateToEnglish(date)

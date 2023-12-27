@@ -146,6 +146,9 @@ const DayShiftList = ({ onPrev, onNext }) => {
             setData({ ...data, shifts: shifts });
             onNext();
           }}
+          isDisabled={Object.values(shifts).every(
+            (array) => array.length === 0
+          )}
         >
           Continue
         </SecondaryButton>
@@ -264,6 +267,14 @@ const DayShiftList = ({ onPrev, onNext }) => {
                 bgColor: "#5BFFC4",
               }}
               bgColor="#A6FFDF"
+              isDisabled={
+                !shiftName ||
+                !shiftStart ||
+                !shiftEnd ||
+                shiftEnd <= shiftStart ||
+                !shiftRequiredNum ||
+                shiftRequiredNum <= 0
+              }
               onClick={() => {
                 const namesArray = requiredNames.split(",");
                 const trimmedArray = namesArray.map((str) => str.trim());
