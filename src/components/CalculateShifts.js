@@ -15,11 +15,19 @@ const CalculateShifts = ({ onNext, onPrev }) => {
     console.log(data, " is the data END END END");
   }, [data]);
 
+  const retrieveIndivData = () => {
+    console.log("retriving indiv data!");
+    // for (let i=0; i<finalShifts.length; i++) {
+
+    // }
+  };
+
   useEffect(() => {
     if (finalShifts) {
       console.log(finalShifts, " is the final product");
       // const parsedShifts = JSON.parse(finalShifts)
       // const daysArray = parsedShifts.properties.days;
+      retrieveIndivData();
     }
   }, [finalShifts]);
 
