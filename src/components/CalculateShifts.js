@@ -90,7 +90,6 @@ const CalculateShifts = ({ onNext, onPrev }) => {
     if (userInfo) {
       console.log("before user info");
       setData({ ...data, userInfo: userInfo });
-      console.log("after user info");
     }
     if (userInfo && shifts) {
       console.log("moving on");
