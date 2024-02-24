@@ -16,14 +16,27 @@ const CalculateShifts = ({ onNext, onPrev }) => {
     console.log(data, " is the data END END END");
   }, [data]);
 
+  const formatDateToEnglish = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const newDate = new Date(dateString + "T00:00:00");
+
+    return newDate.toLocaleDateString("en-US", options);
+  };
+
   const retrieveIndivData = () => {
     const userData = {};
     const users = data?.names;
     console.log("retriving indiv data!");
+    const unavailabilities = data?.unavailabilities;
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       const usersShifts = {};
-      const scheduledUnavailabilities = [];
+      const scheduledUnavailabilities = {};
 
       // get list of each shift for each day
       for (const day of shifts) {
@@ -43,15 +56,61 @@ const CalculateShifts = ({ onNext, onPrev }) => {
           }
 
           // get list of when they were scheduled and they were unavailable
-          // temp here
         }
 
         usersShifts[day?.day] = userDayShifts;
       }
 
+      console.log(usersShifts, " is usersShifts");
+      for (const [day, assignedShifts] of Object.entries(usersShifts)) {
+        const userDayUnavailabilities = [];
+        console.log(day, " is the day");
+        console.log(assignedShifts, " is the assignedShifts");
+        // day is the shift day
+        // assignedShifts is array of objects for each shift that user has that day
+        for (let j = 0; j < assignedShifts.length; j++) {
+          const curr = assignedShifts[j];
+          const start = curr?.startTime;
+          const end = curr?.endTime;
+          const selectedDateUnavailabilities =
+            unavailabilities[formatDateToEnglish(day)];
+
+          console.log(selectedDateUnavailabilities, " is the selectedDay");
+          for (const unavailable of selectedDateUnavailabilities) {
+            // unavailable is like this:
+            // {
+            //   "start": "08:00",
+            //   "end": "09:00",
+            //   "unavailable": []
+            // }
+
+            // start here is the persons shift start
+            // end here is the persons shift end
+            if (
+              ((unavailable?.start <= start && start <= unavailable?.end) ||
+                (unavailable?.end <= end && end <= unavailable?.end)) &&
+              unavailable?.unavailable.includes(user)
+            ) {
+              console.log("scheduled in a bad time");
+              userDayUnavailabilities.push({
+                shift: curr?.shift,
+                userUnavailableFrom: unavailable?.start,
+                userUnavailableTo: unavailable?.end,
+                shiftStart: start,
+                shiftEnd: end,
+              });
+              break;
+            }
+          }
+        }
+
+        scheduledUnavailabilities[day] = userDayUnavailabilities;
+      }
+      // console.log(usersShifts, ' is usersShifts');
+
       userData[user] = {
         shifts: usersShifts,
-        shiftedUnavailabilities: null,
+        shiftedUnavailabilities: scheduledUnavailabilities,
       };
     }
 
