@@ -14,6 +14,10 @@ import SecondaryButton from "./SecondaryButton";
 const Shifts = ({ onPrev }) => {
   const { data } = useContext(DataContext);
 
+  useEffect(() => {
+    console.log("final displayed data: ", data);
+  }, [data]);
+
   const { shiftSchedule } = data;
   const [selectedDate, setSelectedDate] = useState(shiftSchedule[0]?.day || 0);
   const [dateDetails, setDateDetails] = useState(null);

@@ -9,6 +9,7 @@ const CalculateShifts = ({ onNext, onPrev }) => {
   const { data, setData } = useContext(DataContext);
   const [shifts, setShifts] = useState(null);
   const [finalShifts] = useState(null);
+  const [userInfo, setUserInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -16,29 +17,88 @@ const CalculateShifts = ({ onNext, onPrev }) => {
   }, [data]);
 
   const retrieveIndivData = () => {
+    const userData = {};
+    const users = data?.names;
     console.log("retriving indiv data!");
-    // for (let i=0; i<finalShifts.length; i++) {
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      const usersShifts = {};
+      const scheduledUnavailabilities = [];
 
-    // }
+      // get list of each shift for each day
+      for (const day of shifts) {
+        // key = day
+        // val = array of shifts for that day
+        const userDayShifts = [];
+        const dayShifts = day?.shifts;
+        for (let j = 0; j < dayShifts.length; j++) {
+          const currShift = dayShifts[j];
+          if (currShift?.assignedPeople.includes(user)) {
+            userDayShifts.push({
+              shift: currShift?.name,
+              startTime: currShift?.startTime,
+              endTime: currShift?.endTime,
+              shiftLeader: currShift?.shiftLeader === user,
+            });
+          }
+
+          // get list of when they were scheduled and they were unavailable
+          // temp here
+        }
+
+        usersShifts[day?.day] = userDayShifts;
+      }
+
+      userData[user] = {
+        shifts: usersShifts,
+        shiftedUnavailabilities: null,
+      };
+    }
+
+    console.log(userData, " is USER DATA");
+    setUserInfo(userData);
   };
+
+  useEffect(() => {
+    console.log(data, " is final updated data byron");
+  }, [data]);
+
+  // useEffect(() => {
+  //   if (finalShifts) {
+  //     retrieveIndivData();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [finalShifts]);
 
   useEffect(() => {
     if (finalShifts) {
       console.log(finalShifts, " is the final product");
       // const parsedShifts = JSON.parse(finalShifts)
       // const daysArray = parsedShifts.properties.days;
-      retrieveIndivData();
     }
   }, [finalShifts]);
 
   useEffect(() => {
     if (shifts) {
+      retrieveIndivData();
+    }
+    if (shifts) {
+      console.log("before shifts");
       setData({ ...data, shiftSchedule: shifts });
+      console.log("after shifts");
+    }
+    if (userInfo) {
+      console.log("before user info");
+      setData({ ...data, userInfo: userInfo });
+      console.log("after user info");
+    }
+    if (userInfo && shifts) {
+      console.log("moving on");
       setIsLoading(false);
       onNext();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shifts]);
+  }, [shifts, userInfo]);
 
   return (
     <Box
