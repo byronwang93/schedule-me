@@ -26,9 +26,6 @@ const Homescreen = () => {
       .catch((error) => {
         console.log(error, " is the error");
       });
-    // fetch("/")
-    //   .then((res) => res.json())
-    //   .then((data) => setTest(data));
   };
 
   useEffect(() => {
