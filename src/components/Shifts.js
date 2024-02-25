@@ -164,15 +164,6 @@ const Shifts = ({ onPrev }) => {
               </option>
             );
           })}
-          {/* {userInfo.map((d, index) => {
-            const { day } = d;
-            const updatedDay = formatDateToEnglish(day);
-            return (
-              <option key={index} value={day}>
-                {updatedDay}
-              </option>
-            );
-          })} */}
         </Select>
 
         <VStack
