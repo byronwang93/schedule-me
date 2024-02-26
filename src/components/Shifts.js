@@ -170,7 +170,7 @@ const Shifts = ({ onPrev }) => {
           <Text
             color="#20FFAF"
             alignSelf="baseline"
-            fontSize="24px"
+            fontSize="22px"
             className="heading"
           >
             Scheduled Shifts
@@ -275,11 +275,11 @@ const Shifts = ({ onPrev }) => {
           </VStack>
         </VStack>
 
-        <VStack pt="30px">
+        <VStack pt="20px">
           <Text
             color="#20FFAF"
             alignSelf="baseline"
-            fontSize="24px"
+            fontSize="22px"
             className="heading"
           >
             Available but still scheduled during:
@@ -354,102 +354,8 @@ const Shifts = ({ onPrev }) => {
             )}
           </VStack>
         </VStack>
-
-        <VStack
-          w={{ base: "360px", md: "680px" }}
-          py="10px"
-          px="15px"
-          borderRadius="5px"
-          bgColor="#433860"
-          alignItems="baseline"
-          overflowY="auto"
-          maxHeight="500px"
-          pt="30px"
-        >
-          <Accordion allowToggle>
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Scheduled shifts
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                {JSON.stringify(personDetails?.shifts)}
-              </AccordionPanel>
-            </AccordionItem>
-
-            <AccordionItem>
-              <h2>
-                <AccordionButton>
-                  <Box as="span" flex="1" textAlign="left">
-                    Unavailable but still scheduled during:
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-              </h2>
-              <AccordionPanel pb={4}>
-                {JSON.stringify(personDetails?.shiftedUnavailabilities)}
-              </AccordionPanel>
-            </AccordionItem>
-          </Accordion>
-        </VStack>
-        {/* <VStack pt="30px">
-          <HStack alignSelf="baseline" spacing="25px">
-            <Text className="subheading" pl="22px" pr="65px">
-              Shift name
-            </Text>
-            <Text className="subheading" pr="57px">
-              Time
-            </Text>
-            <Text className="subheading">Shift leader</Text>
-            <Text className="subheading">Scheduled</Text>
-          </HStack>
-          <VStack
-            w={{ base: "360px", md: "680px" }}
-            py="10px"
-            px="15px"
-            borderRadius="5px"
-            bgColor="#433860"
-            alignItems="baseline"
-            overflowY="auto"
-            maxHeight="500px"
-          >
-            {dateDetails &&
-              dateDetails.map((shift, index) => {
-                const {
-                  name,
-                  startTime,
-                  endTime,
-                  shiftLeader,
-                  assignedPeople,
-                } = shift;
-                return (
-                  <Box>
-                    <HStack pl="10px" py="10px" key={index}>
-                      <Text w="150px" overflowX="auto">
-                        {name}
-                      </Text>
-                      <Text pl="8px" w="119px">
-                        {startTime}-{endTime}
-                      </Text>
-                      <Text w="98px">{shiftLeader}</Text>
-                      <Text overflowX="auto" w="244px">
-                        {assignedPeople.join(", ")}
-                      </Text>
-                    </HStack>
-                    {index !== dateDetails.length - 1 && (
-                      <Divider ml="1.5%" w="95%" />
-                    )}
-                  </Box>
-                );
-              })}
-          </VStack>
-        </VStack> */}
       </Flex>
-      <SecondaryButton mt="40px" px="30px" onClick={onPrev}>
+      <SecondaryButton mb="30px" mt="40px" px="30px" onClick={onPrev}>
         Calculate Again
       </SecondaryButton>
     </Box>
