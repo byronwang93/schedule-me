@@ -209,7 +209,7 @@ const Shifts = ({ onPrev }) => {
                       {formatDateToEnglish(name) + ` - ${shifts.length} shifts`}
                     </Text>
                     <HStack alignSelf="baseline" spacing="25px">
-                      <Text className="subheading" pl="3px" pr="65px">
+                      <Text className="subheading" pl="8px" pr="65px">
                         Shift name
                       </Text>
                       <Text className="subheading" pr="57px">
@@ -272,6 +272,86 @@ const Shifts = ({ onPrev }) => {
                   </Box>
                 );
               })} */}
+          </VStack>
+        </VStack>
+
+        <VStack pt="30px">
+          <Text
+            color="#20FFAF"
+            alignSelf="baseline"
+            fontSize="24px"
+            className="heading"
+          >
+            Available but still scheduled during:
+          </Text>
+          <VStack
+            w={{ base: "360px", md: "680px" }}
+            // py="10px"
+            // px="15px"
+            // borderRadius="5px"
+            // bgColor="#433860"
+            // alignItems="baseline"
+            // overflowY="auto"
+            // maxHeight="500px"
+            // mb="10px"
+          >
+            {Object.entries(personDetails?.shiftedUnavailabilities || {}).map(
+              ([name, shifts]) => {
+                return (
+                  <VStack
+                    w="100%"
+                    py="10px"
+                    px="15px"
+                    borderRadius="5px"
+                    bgColor="#433860"
+                    alignItems="baseline"
+                    overflowY="auto"
+                    maxHeight="500px"
+                    mb="10px"
+                  >
+                    <Text
+                      color="#white"
+                      alignSelf="baseline"
+                      fontSize="20px"
+                      className="heading"
+                    >
+                      {formatDateToEnglish(name) + ` - ${shifts.length} shifts`}
+                    </Text>
+                    <HStack alignSelf="baseline" spacing="25px">
+                      <Text className="subheading" pl="8px" pr="65px">
+                        Shift name
+                      </Text>
+                      <Text className="subheading" pr="57px">
+                        Time
+                      </Text>
+                      <Text className="subheading">Shift leader</Text>
+                    </HStack>
+                    {shifts.map((s, index) => {
+                      const { shift, shiftStart, shiftEnd, shiftLeader } = s;
+                      console.log(s, " us the shift");
+                      return (
+                        <Box>
+                          <HStack pl="10px" py="10px" key={index}>
+                            <Text w="150px" overflowX="auto">
+                              {shift}
+                            </Text>
+                            <Text pl="8px" w="119px">
+                              {shiftStart}-{shiftEnd}
+                            </Text>
+                            <Text w="98px">
+                              {shiftLeader ? "True" : "False"}
+                            </Text>
+                          </HStack>
+                          {index !== dateDetails.length - 1 && (
+                            <Divider ml="1.5%" w="95%" />
+                          )}
+                        </Box>
+                      );
+                    })}
+                  </VStack>
+                );
+              }
+            )}
           </VStack>
         </VStack>
 
