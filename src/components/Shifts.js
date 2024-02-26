@@ -157,7 +157,7 @@ const Shifts = ({ onPrev }) => {
           onChange={handlePersonChange}
           value={selectedPerson}
         >
-          {Object.entries(userInfo).map(([name, details]) => {
+          {Object.entries(userInfo).map(([name]) => {
             return (
               <option key={name} value={name}>
                 {name}
