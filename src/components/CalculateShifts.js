@@ -96,6 +96,7 @@ const CalculateShifts = ({ onNext, onPrev }) => {
                 shift: curr?.shift,
                 userUnavailableFrom: unavailable?.start,
                 userUnavailableTo: unavailable?.end,
+                shiftLeader: curr?.shiftLeader,
                 shiftStart: start,
                 shiftEnd: end,
               });
@@ -122,18 +123,9 @@ const CalculateShifts = ({ onNext, onPrev }) => {
     console.log(data, " is final updated data byron");
   }, [data]);
 
-  // useEffect(() => {
-  //   if (finalShifts) {
-  //     retrieveIndivData();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [finalShifts]);
-
   useEffect(() => {
     if (finalShifts) {
       console.log(finalShifts, " is the final product");
-      // const parsedShifts = JSON.parse(finalShifts)
-      // const daysArray = parsedShifts.properties.days;
     }
   }, [finalShifts]);
 
