@@ -227,7 +227,7 @@ const Shifts = ({ onPrev }) => {
                               {shiftLeader ? "True" : "False"}
                             </Text>
                           </HStack>
-                          {index !== dateDetails.length - 1 && (
+                          {index !== shifts.length - 1 && (
                             <Divider ml="1.5%" w="95%" />
                           )}
                         </Box>
@@ -307,7 +307,7 @@ const Shifts = ({ onPrev }) => {
                               {shiftLeader ? "True" : "False"}
                             </Text>
                           </HStack>
-                          {index !== dateDetails.length - 1 && (
+                          {index !== shifts.length - 1 && (
                             <Divider ml="1.5%" w="95%" />
                           )}
                         </Box>
