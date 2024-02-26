@@ -64,7 +64,6 @@ const Shifts = ({ onPrev }) => {
 
   return (
     <Box pt="50px">
-      {/* schedule column */}
       <Flex flexDir="column">
         <Text color="#20FFAF" fontSize="28px" className="heading">
           Schedule
@@ -170,17 +169,7 @@ const Shifts = ({ onPrev }) => {
           >
             Scheduled Shifts
           </Text>
-          <VStack
-            w={{ base: "360px", md: "680px" }}
-            // py="10px"
-            // px="15px"
-            // borderRadius="5px"
-            // bgColor="#433860"
-            // alignItems="baseline"
-            // overflowY="auto"
-            // maxHeight="500px"
-            // mb="10px"
-          >
+          <VStack w={{ base: "360px", md: "680px" }}>
             {Object.entries(personDetails?.shifts || {}).map(
               ([name, shifts]) => {
                 return (
@@ -249,17 +238,7 @@ const Shifts = ({ onPrev }) => {
           >
             Available but still scheduled during:
           </Text>
-          <VStack
-            w={{ base: "360px", md: "680px" }}
-            // py="10px"
-            // px="15px"
-            // borderRadius="5px"
-            // bgColor="#433860"
-            // alignItems="baseline"
-            // overflowY="auto"
-            // maxHeight="500px"
-            // mb="10px"
-          >
+          <VStack w={{ base: "360px", md: "680px" }}>
             {Object.entries(personDetails?.shiftedUnavailabilities || {}).map(
               ([name, shifts]) => {
                 return (
