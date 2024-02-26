@@ -2,8 +2,11 @@ A scheduling project for nwPlus hackathons.
 
 Created by the nwPlus HackCamp 2023-2024 team :)
 
-TODOs for the future:
+Supports:
+- Providing a base shift schedule for hackathon organizers
+- Provides summary of stats for each organizer, including how many shifts they were shifted for and when they were scheduled incorrectly (GPT makes mistakes sometimes :P)
 
+TODOs for the future:
 - adding stats about each individual person (total number of shifts, when they were scheduled during their unavailability, what shifts, etc)
 - adding an option to go back (or a save + load feature)
 - adding an option to recalculate shifts
