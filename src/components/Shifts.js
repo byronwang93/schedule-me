@@ -1,9 +1,4 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Divider,
   Flex,
@@ -219,7 +214,6 @@ const Shifts = ({ onPrev }) => {
                     </HStack>
                     {shifts.map((s, index) => {
                       const { shift, startTime, endTime, shiftLeader } = s;
-                      console.log(s, " us the shift");
                       return (
                         <Box>
                           <HStack pl="10px" py="10px" key={index}>
@@ -242,36 +236,7 @@ const Shifts = ({ onPrev }) => {
                   </VStack>
                 );
               }
-            )}{" "}
-            {/* {dateDetails &&
-              dateDetails.map((shift, index) => {
-                const {
-                  name,
-                  startTime,
-                  endTime,
-                  shiftLeader,
-                  assignedPeople,
-                } = shift;
-                return (
-                  <Box>
-                    <HStack pl="10px" py="10px" key={index}>
-                      <Text w="150px" overflowX="auto">
-                        {name}
-                      </Text>
-                      <Text pl="8px" w="119px">
-                        {startTime}-{endTime}
-                      </Text>
-                      <Text w="98px">{shiftLeader}</Text>
-                      <Text overflowX="auto" w="244px">
-                        {assignedPeople.join(", ")}
-                      </Text>
-                    </HStack>
-                    {index !== dateDetails.length - 1 && (
-                      <Divider ml="1.5%" w="95%" />
-                    )}
-                  </Box>
-                );
-              })} */}
+            )}
           </VStack>
         </VStack>
 
