@@ -216,7 +216,6 @@ const Shifts = ({ onPrev }) => {
                         Time
                       </Text>
                       <Text className="subheading">Shift leader</Text>
-                      {/* <Text className="subheading">Shift leader</Text> */}
                     </HStack>
                     {shifts.map((s, index) => {
                       const { shift, startTime, endTime, shiftLeader } = s;
